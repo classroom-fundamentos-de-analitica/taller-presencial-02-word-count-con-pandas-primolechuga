@@ -38,7 +38,7 @@ def count_words(dataframe):
     dataframe = dataframe.explode('text').reset_index(drop = True)
     dataframe = dataframe.rename(columns = {'text': 'word'})
     dataframe['count'] = 1
-    conteo = dataframe.groupby(['word'], as_index= False).agg({'count' :sum})
+    conteo = dataframe.groupby(['word'], as_index= False).agg({'count' :'sum'})
     return conteo
 
 
@@ -55,7 +55,7 @@ def run(input_directory, output_filename):
     dataframe = load_input(input_directory)
     dataframe = clean_text(dataframe)
     dataframe = count_words(dataframe)
-    dataframe = save_output(dataframe,"output.txt")
+    dataframe = save_output(dataframe,output_filename)
 
 
 
