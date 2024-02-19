@@ -12,7 +12,7 @@ def load_input(input_directory):
 
     filenames = glob.glob(input_directory + "/*.*")
     dataframes = [
-        pd.read_csv(filename, sep=";",names=['text']) for filename in filenames
+        pd.read_csv(filename, sep="\t",names=['text']) for filename in filenames
     ]
     dataframe = pd.concat(dataframes).reset_index(drop=True)
     return dataframe
@@ -44,7 +44,7 @@ def count_words(dataframe):
 
 def save_output(dataframe, output_filename):
     """Save output to a file."""
-    dataframe.to_csv(output_filename, index = False)
+    dataframe.to_csv(output_filename, index = False,sep = "\t")
 
 
 #
@@ -56,7 +56,7 @@ def run(input_directory, output_filename):
     dataframe = clean_text(dataframe)
     dataframe = count_words(dataframe)
     dataframe = save_output(dataframe,"output.txt")
-    
+
 
 
 if __name__ == "__main__":
